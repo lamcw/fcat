@@ -86,10 +86,15 @@ int main(int argc, char **argv)
 			}
 		}
 
-		if (fcat(fd, pipefd) == -1) {
+		ssize_t ret = fcat(fd, pipefd);
+
+		if (fd != STDIN_FILENO) {
+			close(fd);
+		}
+
+		if (ret == -1) {
 			goto close_fd;
 		}
-		close(fd);
 	}
 
 	return EXIT_SUCCESS;
