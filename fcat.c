@@ -34,6 +34,7 @@ ssize_t fcat(int infile, int pipefd[2])
 			perror("out");
 			return -1;
 		}
+		total += nbytes;
 	}
 
 	return total;
